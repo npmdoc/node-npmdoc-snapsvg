@@ -1,9 +1,14 @@
-# api documentation for  [snapsvg (v0.5.1)](https://github.com/adobe-webplatform/Snap.svg#readme)  [![npm package](https://img.shields.io/npm/v/npmdoc-snapsvg.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-snapsvg) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-snapsvg.svg)](https://travis-ci.org/npmdoc/node-npmdoc-snapsvg)
+# npmdoc-snapsvg
+
+#### api documentation for  snapsvg (v0.5.1)  [![npm package](https://img.shields.io/npm/v/npmdoc-snapsvg.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-snapsvg) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-snapsvg.svg)](https://travis-ci.org/npmdoc/node-npmdoc-snapsvg)
+
 #### JavaScript Vector Library
 
-[![NPM](https://nodei.co/npm/snapsvg.png?downloads=true)](https://www.npmjs.com/package/snapsvg)
+[![NPM](https://nodei.co/npm/snapsvg.png?downloads=true&downloadRank=true&stars=true)](https://www.npmjs.com/package/snapsvg)
 
-[![apidoc](https://npmdoc.github.io/node-npmdoc-snapsvg/build/screenCapture.buildNpmdoc.browser._2Fhome_2Ftravis_2Fbuild_2Fnpmdoc_2Fnode-npmdoc-snapsvg_2Ftmp_2Fbuild_2Fapidoc.html.png)](https://npmdoc.github.io/node-npmdoc-snapsvg/build/apidoc.html)
+- [https://npmdoc.github.io/node-npmdoc-snapsvg/build/apidoc.html](https://npmdoc.github.io/node-npmdoc-snapsvg/build/apidoc.html)
+
+[![apidoc](https://npmdoc.github.io/node-npmdoc-snapsvg/build/screenCapture.buildCi.browser.%252Ftmp%252Fbuild%252Fapidoc.html.png)](https://npmdoc.github.io/node-npmdoc-snapsvg/build/apidoc.html)
 
 ![npmPackageListing](https://npmdoc.github.io/node-npmdoc-snapsvg/build/screenCapture.npmPackageListing.svg)
 
@@ -16,31 +21,29 @@
 ```json
 
 {
-    "author": {
-        "name": "Dmitry Baranovskiy"
+    "name": "snapsvg",
+    "version": "0.5.1",
+    "description": "JavaScript Vector Library",
+    "main": "./dist/snap.svg.js",
+    "repository": {
+        "type": "git",
+        "url": "git@github.com:adobe-webplatform/Snap.svg.git"
     },
-    "bugs": {
-        "url": "https://github.com/adobe-webplatform/Snap.svg/issues"
-    },
+    "author": "Dmitry Baranovskiy",
+    "license": "Apache-2.0",
     "dependencies": {
         "eve": "~0.5.1"
     },
-    "description": "JavaScript Vector Library",
     "devDependencies": {
-        "dr.js": "~0.1.0",
-        "eslint": "*",
-        "expect.js": "*",
         "grunt": "~0.4.1",
-        "grunt-contrib-concat": "~0.3.0",
         "grunt-contrib-uglify": "~0.2.0",
+        "grunt-contrib-concat": "~0.3.0",
         "grunt-exec": "~0.4.2",
         "grunt-prettify": "0.4.0",
-        "mocha": "*"
-    },
-    "directories": {},
-    "dist": {
-        "shasum": "0caf52c79189a290746fc446cc5e863f6bdddfe3",
-        "tarball": "https://registry.npmjs.org/snapsvg/-/snapsvg-0.5.1.tgz"
+        "mocha": "*",
+        "expect.js": "*",
+        "eslint": "*",
+        "dr.js": "~0.1.0"
     },
     "eslintConfig": {
         "globals": {
@@ -74,37 +77,9 @@
             ]
         }
     },
-    "gitHead": "8c67c8ceaa6b4b2c7202c79297fe86532dacd03c",
-    "homepage": "https://github.com/adobe-webplatform/Snap.svg#readme",
-    "license": "Apache-2.0",
-    "main": "./dist/snap.svg.js",
-    "maintainers": [
-        {
-            "name": "dmitrybaranovskiy",
-            "email": "dmitry@baranovskiy.com"
-        }
-    ],
-    "name": "snapsvg",
-    "optionalDependencies": {},
-    "readme": "ERROR: No README data found!",
-    "repository": {
-        "type": "git",
-        "url": "git+ssh://git@github.com/adobe-webplatform/Snap.svg.git"
-    },
-    "scripts": {},
-    "version": "0.5.1"
+    "bin": {}
 }
 ```
-
-
-
-# <a name="apidoc.tableOfContents"></a>[table of contents](#apidoc.tableOfContents)
-
-#### [module snapsvg](#apidoc.module.snapsvg)
-
-
-
-# <a name="apidoc.module.snapsvg"></a>[module snapsvg](#apidoc.module.snapsvg)
 
 
 
