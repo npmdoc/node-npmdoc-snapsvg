@@ -1,4 +1,4 @@
-<div class="apidocDiv">
+<html><head></head><body><div class="apidocDiv">
 <style>
 /*csslint
 */
@@ -47,15 +47,10 @@
 }
 </style>
 <h1>api documentation for
-    <a
-
-    >snapsvg (v0.5.1)</a>
+    <a>snapsvg (v0.5.1)</a>
 </h1>
 <h4>JavaScript Vector Library</h4>
-<div class="apidocSectionDiv"><a
-    href="#apidoc.tableOfContents"
-    id="apidoc.tableOfContents"
-><h1>table of contents</h1></a><ol>
+<div class="apidocSectionDiv"><a href="#apidoc.tableOfContents" id="apidoc.tableOfContents"><h1>table of contents</h1></a><ol>
 
     <li class="apidocModuleLi"><a href="#apidoc.module.snapsvg">module snapsvg</a><ol>
 
@@ -2202,9 +2197,9 @@
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">after = function (times, func) {
-  if (times &#x3c;= 0) return func();
+  if (times &lt;= 0) return func();
   return function() {
-    if (--times &#x3c; 1) {
+    if (--times &lt; 1) {
       return func.apply(this, arguments);
     }
   };
@@ -2225,9 +2220,9 @@
   iterator || (iterator = _.identity);
   var result = true;
   if (obj == null) return result;
-  if (nativeEvery &#x26;&#x26; obj.every === nativeEvery) return obj.every(iterator, context);
+  if (nativeEvery &amp;&amp; obj.every === nativeEvery) return obj.every(iterator, context);
   each(obj, function(value, index, list) {
-    if (!(result = result &#x26;&#x26; iterator.call(context, value, index, list))) return breaker;
+    if (!(result = result &amp;&amp; iterator.call(context, value, index, list))) return breaker;
   });
   return !!result;
 }</pre></li>
@@ -2247,7 +2242,7 @@
   iterator || (iterator = _.identity);
   var result = false;
   if (obj == null) return result;
-  if (nativeSome &#x26;&#x26; obj.some === nativeSome) return obj.some(iterator, context);
+  if (nativeSome &amp;&amp; obj.some === nativeSome) return obj.some(iterator, context);
   each(obj, function(value, index, list) {
     if (result || (result = iterator.call(context, value, index, list))) return breaker;
   });
@@ -2266,7 +2261,7 @@
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">bind = function (func, context) {
-  if (func.bind === nativeBind &#x26;&#x26; nativeBind) return nativeBind.apply(func, slice.call(arguments, 1));
+  if (func.bind === nativeBind &amp;&amp; nativeBind) return nativeBind.apply(func, slice.call(arguments, 1));
   var args = slice.call(arguments, 2);
   return function() {
     return func.apply(context, args.concat(slice.call(arguments)));
@@ -2275,11 +2270,11 @@
     <li>example usage<pre class="apidocCodePre">...
 
 // **Reduce** builds up a single result from a list of values, aka `inject`,
-// or `foldl`. Delegates to **ECMAScript 5**&#x27;s native `reduce` if available.
+// or `foldl`. Delegates to **ECMAScript 5**'s native `reduce` if available.
 _.reduce = _.foldl = _.inject = function(obj, iterator, memo, context) {
-  var initial = arguments.length &#x3e; 2;
+  var initial = arguments.length &gt; 2;
   if (obj == null) obj = [];
-  if (nativeReduce &#x26;&#x26; obj.reduce === nativeReduce) {
+  if (nativeReduce &amp;&amp; obj.reduce === nativeReduce) {
     if (context) iterator = _.<span class="apidocCodeKeywordSpan">bind</span>(iterator, context);
     return initial ? obj.reduce(iterator, memo) : obj.reduce(iterator);
   }
@@ -2322,12 +2317,12 @@ _.reduce = _.foldl = _.inject = function(obj, iterator, memo, context) {
   return _(obj).chain();
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
-  template.source = &#x27;function(&#x27; + (settings.variable || &#x27;obj&#x27;) + &#x27;){\n&#x27; + source + &#x27;}&#x27;;
+  template.source = 'function(' + (settings.variable || 'obj') + '){\n' + source + '}';
 
   return template;
 };
 
-// Add a &#x22;chain&#x22; function, which will delegate to the wrapper.
+// Add a "chain" function, which will delegate to the wrapper.
 _.chain = function(obj) {
   return _(obj).<span class="apidocCodeKeywordSpan">chain</span>();
 };
@@ -2368,7 +2363,7 @@ _.chain = function(obj) {
     <li>description and source-code<pre class="apidocCodePre">collect = function (obj, iterator, context) {
   var results = [];
   if (obj == null) return results;
-  if (nativeMap &#x26;&#x26; obj.map === nativeMap) return obj.map(iterator, context);
+  if (nativeMap &amp;&amp; obj.map === nativeMap) return obj.map(iterator, context);
   each(obj, function(value, index, list) {
     results[results.length] = iterator.call(context, value, index, list);
   });
@@ -2405,7 +2400,7 @@ _.chain = function(obj) {
   var funcs = arguments;
   return function() {
     var args = arguments;
-    for (var i = funcs.length - 1; i &#x3e;= 0; i--) {
+    for (var i = funcs.length - 1; i &gt;= 0; i--) {
       args = [funcs[i].apply(this, args)];
     }
     return args[0];
@@ -2425,7 +2420,7 @@ _.chain = function(obj) {
     <ul>
     <li>description and source-code<pre class="apidocCodePre">contains = function (obj, target) {
   if (obj == null) return false;
-  if (nativeIndexOf &#x26;&#x26; obj.indexOf === nativeIndexOf) return obj.indexOf(target) != -1;
+  if (nativeIndexOf &amp;&amp; obj.indexOf === nativeIndexOf) return obj.indexOf(target) != -1;
   return any(obj, function(value) {
     return value === target;
   });
@@ -2484,7 +2479,7 @@ _.chain = function(obj) {
       timeout = null;
       if (!immediate) result = func.apply(context, args);
     };
-    var callNow = immediate &#x26;&#x26; !timeout;
+    var callNow = immediate &amp;&amp; !timeout;
     clearTimeout(timeout);
     timeout = setTimeout(later, wait);
     if (callNow) result = func.apply(context, args);
@@ -2514,9 +2509,9 @@ _.chain = function(obj) {
   return obj;
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
-  var escaper = /\\|&#x27;|\r|\n|\t|\u2028|\u2029/g;
+  var escaper = /\\|'|\r|\n|\t|\u2028|\u2029/g;
 
-  // JavaScript micro-templating, similar to John Resig&#x27;s implementation.
+  // JavaScript micro-templating, similar to John Resig's implementation.
   // Underscore templating handles arbitrary delimiters, preserves whitespace,
   // and correctly escapes quotes within interpolated code.
   _.template = function(text, data, settings) {
@@ -2528,7 +2523,7 @@ var matcher = new RegExp([
   (settings.escape || noMatch).source,
   (settings.interpolate || noMatch).source,
   (settings.evaluate || noMatch).source
-].join(&#x27;|&#x27;) + &#x27;|$&#x27;, &#x27;g&#x27;);
+].join('|') + '|$', 'g');
 ...</pre></li>
     </ul>
 
@@ -2643,10 +2638,10 @@ _.uniq = _.unique = function(array, isSorted, iterator, context) {
     <ul>
     <li>description and source-code<pre class="apidocCodePre">each = function (obj, iterator, context) {
   if (obj == null) return;
-  if (nativeForEach &#x26;&#x26; obj.forEach === nativeForEach) {
+  if (nativeForEach &amp;&amp; obj.forEach === nativeForEach) {
     obj.forEach(iterator, context);
   } else if (obj.length === +obj.length) {
-    for (var i = 0, l = obj.length; i &#x3c; l; i++) {
+    for (var i = 0, l = obj.length; i &lt; l; i++) {
       if (iterator.call(context, obj[i], i, obj) === breaker) return;
     }
   } else {
@@ -2660,15 +2655,15 @@ _.uniq = _.unique = function(array, isSorted, iterator, context) {
     <li>example usage<pre class="apidocCodePre">...
 // Regexes containing the keys and values listed immediately above.
 var entityRegexes = {
-  escape:   new RegExp(&#x27;[&#x27; + _.keys(entityMap.escape).join(&#x27;&#x27;) + &#x27;]&#x27;, &#x27;g&#x27;),
-  unescape: new RegExp(&#x27;(&#x27; + _.keys(entityMap.unescape).join(&#x27;|&#x27;) + &#x27;)&#x27;, &#x27;g&#x27;)
+  escape:   new RegExp('[' + _.keys(entityMap.escape).join('') + ']', 'g'),
+  unescape: new RegExp('(' + _.keys(entityMap.unescape).join('|') + ')', 'g')
 };
 
 // Functions for escaping and unescaping strings to/from HTML interpolation.
-_.<span class="apidocCodeKeywordSpan">each</span>([&#x27;escape&#x27;, &#x27;unescape&#x27;], function(method) {
+_.<span class="apidocCodeKeywordSpan">each</span>(['escape', 'unescape'], function(method) {
   _[method] = function(string) {
-    if (string == null) return &#x27;&#x27;;
-    return (&#x27;&#x27; + string).replace(entityRegexes[method], function(match) {
+    if (string == null) return '';
+    return ('' + string).replace(entityRegexes[method], function(match) {
       return entityMap[method][match];
     });
   };
@@ -2686,27 +2681,26 @@ _.<span class="apidocCodeKeywordSpan">each</span>([&#x27;escape&#x27;, &#x27;une
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">escape = function (string) {
-  if (string == null) return &#x27;&#x27;;
-  return (&#x27;&#x27; + string).replace(entityRegexes[method], function(match) {
+  if (string == null) return '';
+  return ('' + string).replace(entityRegexes[method], function(match) {
     return entityMap[method][match];
   });
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
     var index = 0;
-    var source = &#x22;__p+=&#x27;&#x22;;
+    var source = "__p+='";
     text.replace(matcher, function(match, escape, interpolate, evaluate, offset) {
 source += text.slice(index, offset)
-  .replace(escaper, function(match) { return &#x27;\\&#x27; + escapes[match]; });
+  .replace(escaper, function(match) { return '\\' + escapes[match]; });
 
 if (escape) {
-  source += &#x22;&#x27;+\n((__t=(&#x22; + escape + &#x22;))==null?&#x27;&#x27;:_.<span class="apidocCodeKeywordSpan">escape</span
->(__t))+\n&#x27;&#x22;;
+  source += "'+\n((__t=(" + escape + "))==null?'':_.<span class="apidocCodeKeywordSpan">escape</span>(__t))+\n'";
 }
 if (interpolate) {
-  source += &#x22;&#x27;+\n((__t=(&#x22; + interpolate + &#x22;))==null?&#x27;&#x27;:__t)+\n&#x27;&#x22;;
+  source += "'+\n((__t=(" + interpolate + "))==null?'':__t)+\n'";
 }
 if (evaluate) {
-  source += &#x22;&#x27;;\n&#x22; + evaluate + &#x22;\n__p+=&#x27;&#x22;;
+  source += "';\n" + evaluate + "\n__p+='";
 }
 ...</pre></li>
     </ul>
@@ -2724,24 +2718,24 @@ if (evaluate) {
   iterator || (iterator = _.identity);
   var result = true;
   if (obj == null) return result;
-  if (nativeEvery &#x26;&#x26; obj.every === nativeEvery) return obj.every(iterator, context);
+  if (nativeEvery &amp;&amp; obj.every === nativeEvery) return obj.every(iterator, context);
   each(obj, function(value, index, list) {
-    if (!(result = result &#x26;&#x26; iterator.call(context, value, index, list))) return breaker;
+    if (!(result = result &amp;&amp; iterator.call(context, value, index, list))) return breaker;
   });
   return !!result;
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
 // Determine whether all of the elements match a truth test.
-// Delegates to **ECMAScript 5**&#x27;s native `every` if available.
+// Delegates to **ECMAScript 5**'s native `every` if available.
 // Aliased as `all`.
 _.every = _.all = function(obj, iterator, context) {
   iterator || (iterator = _.identity);
   var result = true;
   if (obj == null) return result;
-  if (nativeEvery &#x26;&#x26; obj.every === nativeEvery) return obj.<span class="apidocCodeKeywordSpan">every</span>(iterator,
+  if (nativeEvery &amp;&amp; obj.every === nativeEvery) return obj.<span class="apidocCodeKeywordSpan">every</span>(iterator,
 context);
   each(obj, function(value, index, list) {
-    if (!(result = result &#x26;&#x26; iterator.call(context, value, index, list))) return breaker;
+    if (!(result = result &amp;&amp; iterator.call(context, value, index, list))) return breaker;
   });
   return !!result;
 };
@@ -2781,7 +2775,7 @@ _.clone = function(obj) {
 };
 
 // Invokes interceptor with the obj, and then returns obj.
-// The primary purpose of this method is to &#x22;tap into&#x22; a method chain, in
+// The primary purpose of this method is to "tap into" a method chain, in
 // order to perform operations on intermediate results within the chain.
 _.tap = function(obj, interceptor) {
   interceptor(obj);
@@ -2800,7 +2794,7 @@ _.tap = function(obj, interceptor) {
     <li>description and source-code<pre class="apidocCodePre">filter = function (obj, iterator, context) {
   var results = [];
   if (obj == null) return results;
-  if (nativeFilter &#x26;&#x26; obj.filter === nativeFilter) return obj.filter(iterator, context);
+  if (nativeFilter &amp;&amp; obj.filter === nativeFilter) return obj.filter(iterator, context);
   each(obj, function(value, index, list) {
     if (iterator.call(context, value, index, list)) results[results.length] = value;
   });
@@ -2809,12 +2803,12 @@ _.tap = function(obj, interceptor) {
     <li>example usage<pre class="apidocCodePre">...
 
 // Return all the elements that pass a truth test.
-// Delegates to **ECMAScript 5**&#x27;s native `filter` if available.
+// Delegates to **ECMAScript 5**'s native `filter` if available.
 // Aliased as `select`.
 _.filter = _.select = function(obj, iterator, context) {
   var results = [];
   if (obj == null) return results;
-  if (nativeFilter &#x26;&#x26; obj.filter === nativeFilter) return obj.<span class="apidocCodeKeywordSpan">filter</span>(iterator
+  if (nativeFilter &amp;&amp; obj.filter === nativeFilter) return obj.<span class="apidocCodeKeywordSpan">filter</span>(iterator
 , context);
   each(obj, function(value, index, list) {
     if (iterator.call(context, value, index, list)) results[results.length] = value;
@@ -2874,7 +2868,7 @@ _.filter = _.select = function(obj, iterator, context) {
     <ul>
     <li>description and source-code<pre class="apidocCodePre">first = function (array, n, guard) {
   if (array == null) return void 0;
-  return (n != null) &#x26;&#x26; !guard ? slice.call(array, 0, n) : array[0];
+  return (n != null) &amp;&amp; !guard ? slice.call(array, 0, n) : array[0];
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
@@ -2904,9 +2898,9 @@ _.filter = _.select = function(obj, iterator, context) {
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">foldl = function (obj, iterator, memo, context) {
-  var initial = arguments.length &#x3e; 2;
+  var initial = arguments.length &gt; 2;
   if (obj == null) obj = [];
-  if (nativeReduce &#x26;&#x26; obj.reduce === nativeReduce) {
+  if (nativeReduce &amp;&amp; obj.reduce === nativeReduce) {
     if (context) iterator = _.bind(iterator, context);
     return initial ? obj.reduce(iterator, memo) : obj.reduce(iterator);
   }
@@ -2934,9 +2928,9 @@ _.filter = _.select = function(obj, iterator, context) {
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">foldr = function (obj, iterator, memo, context) {
-  var initial = arguments.length &#x3e; 2;
+  var initial = arguments.length &gt; 2;
   if (obj == null) obj = [];
-  if (nativeReduceRight &#x26;&#x26; obj.reduceRight === nativeReduceRight) {
+  if (nativeReduceRight &amp;&amp; obj.reduceRight === nativeReduceRight) {
     if (context) iterator = _.bind(iterator, context);
     return initial ? obj.reduceRight(iterator, memo) : obj.reduceRight(iterator);
   }
@@ -2971,10 +2965,10 @@ _.filter = _.select = function(obj, iterator, context) {
     <ul>
     <li>description and source-code<pre class="apidocCodePre">forEach = function (obj, iterator, context) {
   if (obj == null) return;
-  if (nativeForEach &#x26;&#x26; obj.forEach === nativeForEach) {
+  if (nativeForEach &amp;&amp; obj.forEach === nativeForEach) {
     obj.forEach(iterator, context);
   } else if (obj.length === +obj.length) {
-    for (var i = 0, l = obj.length; i &#x3c; l; i++) {
+    for (var i = 0, l = obj.length; i &lt; l; i++) {
       if (iterator.call(context, obj[i], i, obj) === breaker) return;
     }
   } else {
@@ -2989,13 +2983,13 @@ _.filter = _.select = function(obj, iterator, context) {
 
 // The cornerstone, an `each` implementation, aka `forEach`.
 // Handles objects with the built-in `forEach`, arrays, and raw objects.
-// Delegates to **ECMAScript 5**&#x27;s native `forEach` if available.
+// Delegates to **ECMAScript 5**'s native `forEach` if available.
 var each = _.each = _.forEach = function(obj, iterator, context) {
   if (obj == null) return;
-  if (nativeForEach &#x26;&#x26; obj.forEach === nativeForEach) {
+  if (nativeForEach &amp;&amp; obj.forEach === nativeForEach) {
     obj.<span class="apidocCodeKeywordSpan">forEach</span>(iterator, context);
   } else if (obj.length === +obj.length) {
-    for (var i = 0, l = obj.length; i &#x3c; l; i++) {
+    for (var i = 0, l = obj.length; i &lt; l; i++) {
       if (iterator.call(context, obj[i], i, obj) === breaker) return;
     }
   } else {
@@ -3024,7 +3018,7 @@ var each = _.each = _.forEach = function(obj, iterator, context) {
   };
 };
 
-// Bind all of an object&#x27;s methods to that object. Useful for ensuring that
+// Bind all of an object's methods to that object. Useful for ensuring that
 // all callbacks defined on an object belong to it.
 _.bindAll = function(obj) {
   var funcs = slice.call(arguments, 1);
@@ -3071,7 +3065,7 @@ _.memoize = function(func, hasher) {
     <li>example usage<pre class="apidocCodePre">...
     obj.forEach(iterator, context);
   } else if (obj.length === +obj.length) {
-    for (var i = 0, l = obj.length; i &#x3c; l; i++) {
+    for (var i = 0, l = obj.length; i &lt; l; i++) {
       if (iterator.call(context, obj[i], i, obj) === breaker) return;
     }
   } else {
@@ -3098,7 +3092,7 @@ _.memoize = function(func, hasher) {
     <ul>
     <li>description and source-code<pre class="apidocCodePre">head = function (array, n, guard) {
   if (array == null) return void 0;
-  return (n != null) &#x26;&#x26; !guard ? slice.call(array, 0, n) : array[0];
+  return (n != null) &amp;&amp; !guard ? slice.call(array, 0, n) : array[0];
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
@@ -3129,7 +3123,7 @@ _.memoize = function(func, hasher) {
     <ul>
     <li>description and source-code<pre class="apidocCodePre">include = function (obj, target) {
   if (obj == null) return false;
-  if (nativeIndexOf &#x26;&#x26; obj.indexOf === nativeIndexOf) return obj.indexOf(target) != -1;
+  if (nativeIndexOf &amp;&amp; obj.indexOf === nativeIndexOf) return obj.indexOf(target) != -1;
   return any(obj, function(value) {
     return value === target;
   });
@@ -3150,15 +3144,15 @@ _.memoize = function(func, hasher) {
   if (array == null) return -1;
   var i = 0, l = array.length;
   if (isSorted) {
-    if (typeof isSorted == &#x27;number&#x27;) {
-      i = (isSorted &#x3c; 0 ? Math.max(0, l + isSorted) : isSorted);
+    if (typeof isSorted == 'number') {
+      i = (isSorted &lt; 0 ? Math.max(0, l + isSorted) : isSorted);
     } else {
       i = _.sortedIndex(array, item);
       return array[i] === item ? i : -1;
     }
   }
-  if (nativeIndexOf &#x26;&#x26; array.indexOf === nativeIndexOf) return array.indexOf(item, isSorted);
-  for (; i &#x3c; l; i++) if (array[i] === item) return i;
+  if (nativeIndexOf &amp;&amp; array.indexOf === nativeIndexOf) return array.indexOf(item, isSorted);
+  for (; i &lt; l; i++) if (array[i] === item) return i;
   return -1;
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
@@ -3169,7 +3163,7 @@ _.memoize = function(func, hasher) {
 // Aliased as `include`.
 _.contains = _.include = function(obj, target) {
   if (obj == null) return false;
-  if (nativeIndexOf &#x26;&#x26; obj.indexOf === nativeIndexOf) return obj.<span class="apidocCodeKeywordSpan">indexOf</span>(target
+  if (nativeIndexOf &amp;&amp; obj.indexOf === nativeIndexOf) return obj.<span class="apidocCodeKeywordSpan">indexOf</span>(target
 ) != -1;
   return any(obj, function(value) {
     return value === target;
@@ -3206,9 +3200,9 @@ _.invoke = function(obj, method) {
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">inject = function (obj, iterator, memo, context) {
-  var initial = arguments.length &#x3e; 2;
+  var initial = arguments.length &gt; 2;
   if (obj == null) obj = [];
-  if (nativeReduce &#x26;&#x26; obj.reduce === nativeReduce) {
+  if (nativeReduce &amp;&amp; obj.reduce === nativeReduce) {
     if (context) iterator = _.bind(iterator, context);
     return initial ? obj.reduce(iterator, memo) : obj.reduce(iterator);
   }
@@ -3239,7 +3233,7 @@ _.invoke = function(obj, method) {
   var rest = slice.call(arguments, 1);
   return _.filter(_.uniq(array), function(item) {
     return _.every(rest, function(other) {
-      return _.indexOf(other, item) &#x3e;= 0;
+      return _.indexOf(other, item) &gt;= 0;
     });
   });
 }</pre></li>
@@ -3261,19 +3255,19 @@ _.invoke = function(obj, method) {
   return result;
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
-    &#x27;&#x3c;&#x27;: &#x27;&#x26;lt;&#x27;,
-    &#x27;&#x3e;&#x27;: &#x27;&#x26;gt;&#x27;,
-    &#x27;&#x22;&#x27;: &#x27;&#x26;quot;&#x27;,
-    &#x22;&#x27;&#x22;: &#x27;&#x26;#x27;&#x27;,
-    &#x27;/&#x27;: &#x27;&#x26;#x2F;&#x27;
+    '&lt;': '&amp;lt;',
+    '&gt;': '&amp;gt;',
+    '"': '&amp;quot;',
+    "'": '&amp;#x27;',
+    '/': '&amp;#x2F;'
   }
 };
 entityMap.unescape = _.<span class="apidocCodeKeywordSpan">invert</span>(entityMap.escape);
 
 // Regexes containing the keys and values listed immediately above.
 var entityRegexes = {
-  escape:   new RegExp(&#x27;[&#x27; + _.keys(entityMap.escape).join(&#x27;&#x27;) + &#x27;]&#x27;, &#x27;g&#x27;),
-  unescape: new RegExp(&#x27;(&#x27; + _.keys(entityMap.unescape).join(&#x27;|&#x27;) + &#x27;)&#x27;, &#x27;g&#x27;)
+  escape:   new RegExp('[' + _.keys(entityMap.escape).join('') + ']', 'g'),
+  unescape: new RegExp('(' + _.keys(entityMap.unescape).join('|') + ')', 'g')
 };
 ...</pre></li>
     </ul>
@@ -3307,24 +3301,24 @@ var entityRegexes = {
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">isArguments = function (obj) {
-  return toString.call(obj) == &#x27;[object &#x27; + name + &#x27;]&#x27;;
+  return toString.call(obj) == '[object ' + name + ']';
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
-  _[&#x27;is&#x27; + name] = function(obj) {
-    return toString.call(obj) == &#x27;[object &#x27; + name + &#x27;]&#x27;;
+  _['is' + name] = function(obj) {
+    return toString.call(obj) == '[object ' + name + ']';
   };
 });
 
 // Define a fallback version of the method in browsers (ahem, IE), where
-// there isn&#x27;t any inspectable &#x22;Arguments&#x22; type.
+// there isn't any inspectable "Arguments" type.
 if (!_.<span class="apidocCodeKeywordSpan">isArguments</span>(arguments)) {
   _.isArguments = function(obj) {
-    return !!(obj &#x26;&#x26; _.has(obj, &#x27;callee&#x27;));
+    return !!(obj &amp;&amp; _.has(obj, 'callee'));
   };
 }
 
 // Optimize `isFunction` if appropriate.
-if (typeof (/./) !== &#x27;function&#x27;) {
+if (typeof (/./) !== 'function') {
 ...</pre></li>
     </ul>
 
@@ -3343,18 +3337,18 @@ if (typeof (/./) !== &#x27;function&#x27;) {
 };
 
 // Return the maximum element or (element-based computation).
-// Can&#x27;t optimize arrays of integers longer than 65,535 elements.
+// Can't optimize arrays of integers longer than 65,535 elements.
 // See: https://bugs.webkit.org/show_bug.cgi?id=80797
 _.max = function(obj, iterator, context) {
-  if (!iterator &#x26;&#x26; _.<span class="apidocCodeKeywordSpan">isArray</span>(obj) &#x26;&#x26; obj[0] === +obj[0] &#x26;&#x26
-; obj.length &#x3c; 65535) {
+  if (!iterator &amp;&amp; _.<span class="apidocCodeKeywordSpan">isArray</span>(obj) &amp;&amp; obj[0] === +obj[0] &amp;&amp;
+; obj.length &lt; 65535) {
     return Math.max.apply(Math, obj);
   }
-  if (!iterator &#x26;&#x26; _.isEmpty(obj)) return -Infinity;
+  if (!iterator &amp;&amp; _.isEmpty(obj)) return -Infinity;
   var result = {computed : -Infinity, value: -Infinity};
   each(obj, function(value, index, list) {
     var computed = iterator ? iterator.call(context, value, index, list) : value;
-    computed &#x3e;= result.computed &#x26;&#x26; (result = {value : value, computed : computed});
+    computed &gt;= result.computed &amp;&amp; (result = {value : value, computed : computed});
 ...</pre></li>
     </ul>
 
@@ -3368,7 +3362,7 @@ _.max = function(obj, iterator, context) {
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">isBoolean = function (obj) {
-  return obj === true || obj === false || toString.call(obj) == &#x27;[object Boolean]&#x27;;
+  return obj === true || obj === false || toString.call(obj) == '[object Boolean]';
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
@@ -3383,7 +3377,7 @@ _.max = function(obj, iterator, context) {
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">isDate = function (obj) {
-  return toString.call(obj) == &#x27;[object &#x27; + name + &#x27;]&#x27;;
+  return toString.call(obj) == '[object ' + name + ']';
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
@@ -3398,7 +3392,7 @@ _.max = function(obj, iterator, context) {
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">isElement = function (obj) {
-  return !!(obj &#x26;&#x26; obj.nodeType === 1);
+  return !!(obj &amp;&amp; obj.nodeType === 1);
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
@@ -3427,7 +3421,7 @@ _.pluck = function(obj, key) {
 // containing specific `key:value` pairs.
 _.where = function(obj, attrs, first) {
   if (_.<span class="apidocCodeKeywordSpan">isEmpty</span>(attrs)) return first ? null : [];
-  return _[first ? &#x27;find&#x27; : &#x27;filter&#x27;](obj, function(value) {
+  return _[first ? 'find' : 'filter'](obj, function(value) {
     for (var key in attrs) {
       if (attrs[key] !== value[key]) return false;
     }
@@ -3462,7 +3456,7 @@ _.where = function(obj, attrs, first) {
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">isFinite = function (obj) {
-  return isFinite(obj) &#x26;&#x26; !isNaN(parseFloat(obj));
+  return isFinite(obj) &amp;&amp; !isNaN(parseFloat(obj));
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
@@ -3477,7 +3471,7 @@ _.where = function(obj, attrs, first) {
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">isFunction = function (obj) {
-  return typeof obj === &#x27;function&#x27;;
+  return typeof obj === 'function';
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
     return value === target;
@@ -3508,7 +3502,7 @@ _.pluck = function(obj, key) {
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">isNaN = function (obj) {
-  return _.isNumber(obj) &#x26;&#x26; obj != +obj;
+  return _.isNumber(obj) &amp;&amp; obj != +obj;
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
@@ -3538,22 +3532,22 @@ _.pluck = function(obj, key) {
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">isNumber = function (obj) {
-  return toString.call(obj) == &#x27;[object &#x27; + name + &#x27;]&#x27;;
+  return toString.call(obj) == '[object ' + name + ']';
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
 // Is a given object a finite number?
 _.isFinite = function(obj) {
-  return isFinite(obj) &#x26;&#x26; !isNaN(parseFloat(obj));
+  return isFinite(obj) &amp;&amp; !isNaN(parseFloat(obj));
 };
 
 // Is the given value `NaN`? (NaN is the only number which does not equal itself).
 _.isNaN = function(obj) {
-  return _.<span class="apidocCodeKeywordSpan">isNumber</span>(obj) &#x26;&#x26; obj != +obj;
+  return _.<span class="apidocCodeKeywordSpan">isNumber</span>(obj) &amp;&amp; obj != +obj;
 };
 
 // Is a given value a boolean?
 _.isBoolean = function(obj) {
-  return obj === true || obj === false || toString.call(obj) == &#x27;[object Boolean]&#x27;;
+  return obj === true || obj === false || toString.call(obj) == '[object Boolean]';
 };
 ...</pre></li>
     </ul>
@@ -3583,7 +3577,7 @@ _.clone = function(obj) {
 };
 
 // Invokes interceptor with the obj, and then returns obj.
-// The primary purpose of this method is to &#x22;tap into&#x22; a method chain, in
+// The primary purpose of this method is to "tap into" a method chain, in
 // order to perform operations on intermediate results within the chain.
 _.tap = function(obj, interceptor) {
 ...</pre></li>
@@ -3599,7 +3593,7 @@ _.tap = function(obj, interceptor) {
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">isRegExp = function (obj) {
-  return toString.call(obj) == &#x27;[object &#x27; + name + &#x27;]&#x27;;
+  return toString.call(obj) == '[object ' + name + ']';
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
@@ -3614,14 +3608,14 @@ _.tap = function(obj, interceptor) {
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">isString = function (obj) {
-  return toString.call(obj) == &#x27;[object &#x27; + name + &#x27;]&#x27;;
+  return toString.call(obj) == '[object ' + name + ']';
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
   return eq(a, b, [], []);
 };
 
 // Is a given array, string, or object empty?
-// An &#x22;empty&#x22; object has no enumerable own-properties.
+// An "empty" object has no enumerable own-properties.
 _.isEmpty = function(obj) {
   if (obj == null) return true;
   if (_.isArray(obj) || _.<span class="apidocCodeKeywordSpan">isString</span>(obj)) return obj.length === 0;
@@ -3631,7 +3625,7 @@ _.isEmpty = function(obj) {
 
 // Is a given value a DOM element?
 _.isElement = function(obj) {
-  return !!(obj &#x26;&#x26; obj.nodeType === 1);
+  return !!(obj &amp;&amp; obj.nodeType === 1);
 ...</pre></li>
     </ul>
 
@@ -3662,7 +3656,7 @@ _.isElement = function(obj) {
     <li>description and source-code<pre class="apidocCodePre">function keys() { [native code] }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
 if (obj == null) obj = [];
-if (nativeReduceRight &#x26;&#x26; obj.reduceRight === nativeReduceRight) {
+if (nativeReduceRight &amp;&amp; obj.reduceRight === nativeReduceRight) {
   if (context) iterator = _.bind(iterator, context);
   return initial ? obj.reduceRight(iterator, memo) : obj.reduceRight(iterator);
 }
@@ -3690,7 +3684,7 @@ each(obj, function(value, index, list) {
     <ul>
     <li>description and source-code<pre class="apidocCodePre">last = function (array, n, guard) {
   if (array == null) return void 0;
-  if ((n != null) &#x26;&#x26; !guard) {
+  if ((n != null) &amp;&amp; !guard) {
     return slice.call(array, Math.max(array.length - n, 0));
   } else {
     return array[array.length - 1];
@@ -3711,7 +3705,7 @@ each(obj, function(value, index, list) {
     <li>description and source-code<pre class="apidocCodePre">lastIndexOf = function (array, item, from) {
   if (array == null) return -1;
   var hasIndex = from != null;
-  if (nativeLastIndexOf &#x26;&#x26; array.lastIndexOf === nativeLastIndexOf) {
+  if (nativeLastIndexOf &amp;&amp; array.lastIndexOf === nativeLastIndexOf) {
     return hasIndex ? array.lastIndexOf(item, from) : array.lastIndexOf(item);
   }
   var i = (hasIndex ? from : array.length);
@@ -3721,11 +3715,11 @@ each(obj, function(value, index, list) {
     <li>example usage<pre class="apidocCodePre">...
 };
 
-// Delegates to **ECMAScript 5**&#x27;s native `lastIndexOf` if available.
+// Delegates to **ECMAScript 5**'s native `lastIndexOf` if available.
 _.lastIndexOf = function(array, item, from) {
   if (array == null) return -1;
   var hasIndex = from != null;
-  if (nativeLastIndexOf &#x26;&#x26; array.lastIndexOf === nativeLastIndexOf) {
+  if (nativeLastIndexOf &amp;&amp; array.lastIndexOf === nativeLastIndexOf) {
     return hasIndex ? array.<span class="apidocCodeKeywordSpan">lastIndexOf</span>(item, from) : array.lastIndexOf(item);
   }
   var i = (hasIndex ? from : array.length);
@@ -3749,7 +3743,7 @@ _.lastIndexOf = function(array, item, from) {
     <li>description and source-code<pre class="apidocCodePre">map = function (obj, iterator, context) {
   var results = [];
   if (obj == null) return results;
-  if (nativeMap &#x26;&#x26; obj.map === nativeMap) return obj.map(iterator, context);
+  if (nativeMap &amp;&amp; obj.map === nativeMap) return obj.map(iterator, context);
   each(obj, function(value, index, list) {
     results[results.length] = iterator.call(context, value, index, list);
   });
@@ -3759,18 +3753,18 @@ _.lastIndexOf = function(array, item, from) {
 };
 
 // Return the results of applying the iterator to each element.
-// Delegates to **ECMAScript 5**&#x27;s native `map` if available.
+// Delegates to **ECMAScript 5**'s native `map` if available.
 _.map = _.collect = function(obj, iterator, context) {
   var results = [];
   if (obj == null) return results;
-  if (nativeMap &#x26;&#x26; obj.map === nativeMap) return obj.<span class="apidocCodeKeywordSpan">map</span>(iterator, context);
+  if (nativeMap &amp;&amp; obj.map === nativeMap) return obj.<span class="apidocCodeKeywordSpan">map</span>(iterator, context);
   each(obj, function(value, index, list) {
     results[results.length] = iterator.call(context, value, index, list);
   });
   return results;
 };
 
-var reduceError = &#x27;Reduce of empty array with no initial value&#x27;;
+var reduceError = 'Reduce of empty array with no initial value';
 ...</pre></li>
     </ul>
 
@@ -3784,14 +3778,14 @@ var reduceError = &#x27;Reduce of empty array with no initial value&#x27;;
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">max = function (obj, iterator, context) {
-  if (!iterator &#x26;&#x26; _.isArray(obj) &#x26;&#x26; obj[0] === +obj[0] &#x26;&#x26; obj.length &#x3c; 65535) {
+  if (!iterator &amp;&amp; _.isArray(obj) &amp;&amp; obj[0] === +obj[0] &amp;&amp; obj.length &lt; 65535) {
     return Math.max.apply(Math, obj);
   }
-  if (!iterator &#x26;&#x26; _.isEmpty(obj)) return -Infinity;
+  if (!iterator &amp;&amp; _.isEmpty(obj)) return -Infinity;
   var result = {computed : -Infinity, value: -Infinity};
   each(obj, function(value, index, list) {
     var computed = iterator ? iterator.call(context, value, index, list) : value;
-    computed &#x3e;= result.computed &#x26;&#x26; (result = {value : value, computed : computed});
+    computed &gt;= result.computed &amp;&amp; (result = {value : value, computed : computed});
   });
   return result.value;
 }</pre></li>
@@ -3802,7 +3796,7 @@ var reduceError = &#x27;Reduce of empty array with no initial value&#x27;;
 // values in the array. The **guard** check allows it to work with `_.map`.
 _.last = function(array, n, guard) {
   if (array == null) return void 0;
-  if ((n != null) &#x26;&#x26; !guard) {
+  if ((n != null) &amp;&amp; !guard) {
     return slice.call(array, Math.<span class="apidocCodeKeywordSpan">max</span>(array.length - n, 0));
   } else {
     return array[array.length - 1];
@@ -3863,14 +3857,14 @@ _.last = function(array, n, guard) {
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">min = function (obj, iterator, context) {
-  if (!iterator &#x26;&#x26; _.isArray(obj) &#x26;&#x26; obj[0] === +obj[0] &#x26;&#x26; obj.length &#x3c; 65535) {
+  if (!iterator &amp;&amp; _.isArray(obj) &amp;&amp; obj[0] === +obj[0] &amp;&amp; obj.length &lt; 65535) {
     return Math.min.apply(Math, obj);
   }
-  if (!iterator &#x26;&#x26; _.isEmpty(obj)) return Infinity;
+  if (!iterator &amp;&amp; _.isEmpty(obj)) return Infinity;
   var result = {computed : Infinity, value: Infinity};
   each(obj, function(value, index, list) {
     var computed = iterator ? iterator.call(context, value, index, list) : value;
-    computed &#x3c; result.computed &#x26;&#x26; (result = {value : value, computed : computed});
+    computed &lt; result.computed &amp;&amp; (result = {value : value, computed : computed});
   });
   return result.value;
 }</pre></li>
@@ -3907,8 +3901,8 @@ var result = function(obj) {
 _.<span class="apidocCodeKeywordSpan">mixin</span>(_);
 
 // Add all mutator Array functions to the wrapper.
-each([&#x27;pop&#x27;, &#x27;push&#x27;, &#x27;reverse&#x27;, &#x27;shift&#x27;, &#x27;sort&#x27;, &#x27;splice&#x27;, &#x27;unshift
-&#x27;], function(name) {
+each(['pop', 'push', 'reverse', 'shift', 'sort', 'splice', 'unshift
+'], function(name) {
   var method = ArrayProto[name];
   _.prototype[name] = function() {
     var obj = this._wrapped;
@@ -3944,7 +3938,7 @@ each([&#x27;pop&#x27;, &#x27;push&#x27;, &#x27;reverse&#x27;, &#x27;shift&#x27;,
     <li>description and source-code<pre class="apidocCodePre">object = function (list, values) {
   if (list == null) return {};
   var result = {};
-  for (var i = 0, l = list.length; i &#x3c; l; i++) {
+  for (var i = 0, l = list.length; i &lt; l; i++) {
     if (values) {
       result[list[i]] = values[i];
     } else {
@@ -4070,7 +4064,7 @@ var lookupIterator = function(value) {
   return _.isFunction(value) ? value : function(obj){ return obj[value]; };
 };
 
-// Sort the object&#x27;s values by a criterion produced by an iterator.
+// Sort the object's values by a criterion produced by an iterator.
 _.sortBy = function(obj, value, context) {
   var iterator = lookupIterator(value);
   return _.<span class="apidocCodeKeywordSpan">pluck</span>(_.map(obj, function(value, index, list) {
@@ -4129,7 +4123,7 @@ _.sortBy = function(obj, value, context) {
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">range = function (start, stop, step) {
-  if (arguments.length &#x3c;= 1) {
+  if (arguments.length &lt;= 1) {
     stop = start || 0;
     start = 0;
   }
@@ -4139,7 +4133,7 @@ _.sortBy = function(obj, value, context) {
   var idx = 0;
   var range = new Array(len);
 
-  while(idx &#x3c; len) {
+  while(idx &lt; len) {
     range[idx++] = start;
     start += step;
   }
@@ -4159,9 +4153,9 @@ _.sortBy = function(obj, value, context) {
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">reduce = function (obj, iterator, memo, context) {
-  var initial = arguments.length &#x3e; 2;
+  var initial = arguments.length &gt; 2;
   if (obj == null) obj = [];
-  if (nativeReduce &#x26;&#x26; obj.reduce === nativeReduce) {
+  if (nativeReduce &amp;&amp; obj.reduce === nativeReduce) {
     if (context) iterator = _.bind(iterator, context);
     return initial ? obj.reduce(iterator, memo) : obj.reduce(iterator);
   }
@@ -4178,11 +4172,11 @@ _.sortBy = function(obj, value, context) {
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
 // **Reduce** builds up a single result from a list of values, aka `inject`,
-// or `foldl`. Delegates to **ECMAScript 5**&#x27;s native `reduce` if available.
+// or `foldl`. Delegates to **ECMAScript 5**'s native `reduce` if available.
 _.reduce = _.foldl = _.inject = function(obj, iterator, memo, context) {
-  var initial = arguments.length &#x3e; 2;
+  var initial = arguments.length &gt; 2;
   if (obj == null) obj = [];
-  if (nativeReduce &#x26;&#x26; obj.reduce === nativeReduce) {
+  if (nativeReduce &amp;&amp; obj.reduce === nativeReduce) {
     if (context) iterator = _.bind(iterator, context);
     return initial ? obj.<span class="apidocCodeKeywordSpan">reduce</span>(iterator, memo) : obj.reduce(iterator);
   }
@@ -4205,9 +4199,9 @@ _.reduce = _.foldl = _.inject = function(obj, iterator, memo, context) {
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">reduceRight = function (obj, iterator, memo, context) {
-  var initial = arguments.length &#x3e; 2;
+  var initial = arguments.length &gt; 2;
   if (obj == null) obj = [];
-  if (nativeReduceRight &#x26;&#x26; obj.reduceRight === nativeReduceRight) {
+  if (nativeReduceRight &amp;&amp; obj.reduceRight === nativeReduceRight) {
     if (context) iterator = _.bind(iterator, context);
     return initial ? obj.reduceRight(iterator, memo) : obj.reduceRight(iterator);
   }
@@ -4230,11 +4224,11 @@ _.reduce = _.foldl = _.inject = function(obj, iterator, memo, context) {
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
 // The right-associative version of reduce, also known as `foldr`.
-// Delegates to **ECMAScript 5**&#x27;s native `reduceRight` if available.
+// Delegates to **ECMAScript 5**'s native `reduceRight` if available.
 _.reduceRight = _.foldr = function(obj, iterator, memo, context) {
-  var initial = arguments.length &#x3e; 2;
+  var initial = arguments.length &gt; 2;
   if (obj == null) obj = [];
-  if (nativeReduceRight &#x26;&#x26; obj.reduceRight === nativeReduceRight) {
+  if (nativeReduceRight &amp;&amp; obj.reduceRight === nativeReduceRight) {
     if (context) iterator = _.bind(iterator, context);
     return initial ? obj.<span class="apidocCodeKeywordSpan">reduceRight</span>(iterator, memo) : obj.reduceRight(iterator);
   }
@@ -4308,7 +4302,7 @@ _.reduceRight = _.foldr = function(obj, iterator, memo, context) {
     <li>description and source-code<pre class="apidocCodePre">select = function (obj, iterator, context) {
   var results = [];
   if (obj == null) return results;
-  if (nativeFilter &#x26;&#x26; obj.filter === nativeFilter) return obj.filter(iterator, context);
+  if (nativeFilter &amp;&amp; obj.filter === nativeFilter) return obj.filter(iterator, context);
   each(obj, function(value, index, list) {
     if (iterator.call(context, value, index, list)) results[results.length] = value;
   });
@@ -4369,7 +4363,7 @@ _.reduceRight = _.foldr = function(obj, iterator, memo, context) {
   iterator || (iterator = _.identity);
   var result = false;
   if (obj == null) return result;
-  if (nativeSome &#x26;&#x26; obj.some === nativeSome) return obj.some(iterator, context);
+  if (nativeSome &amp;&amp; obj.some === nativeSome) return obj.some(iterator, context);
   each(obj, function(value, index, list) {
     if (result || (result = iterator.call(context, value, index, list))) return breaker;
   });
@@ -4377,13 +4371,13 @@ _.reduceRight = _.foldr = function(obj, iterator, memo, context) {
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
 // Determine if at least one element in the object matches a truth test.
-// Delegates to **ECMAScript 5**&#x27;s native `some` if available.
+// Delegates to **ECMAScript 5**'s native `some` if available.
 // Aliased as `any`.
 var any = _.some = _.any = function(obj, iterator, context) {
   iterator || (iterator = _.identity);
   var result = false;
   if (obj == null) return result;
-  if (nativeSome &#x26;&#x26; obj.some === nativeSome) return obj.<span class="apidocCodeKeywordSpan">some</span>(iterator, context
+  if (nativeSome &amp;&amp; obj.some === nativeSome) return obj.<span class="apidocCodeKeywordSpan">some</span>(iterator, context
 );
   each(obj, function(value, index, list) {
     if (result || (result = iterator.call(context, value, index, list))) return breaker;
@@ -4416,11 +4410,11 @@ var any = _.some = _.any = function(obj, iterator, context) {
     var a = left.criteria;
     var b = right.criteria;
     if (a !== b) {
-      if (a &#x3e; b || a === void 0) return 1;
-      if (a &#x3c; b || b === void 0) return -1;
+      if (a &gt; b || a === void 0) return 1;
+      if (a &lt; b || b === void 0) return -1;
     }
-    return left.index &#x3c; right.index ? -1 : 1;
-  }), &#x27;value&#x27;);
+    return left.index &lt; right.index ? -1 : 1;
+  }), 'value');
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
@@ -4438,9 +4432,9 @@ var any = _.some = _.any = function(obj, iterator, context) {
   iterator = iterator == null ? _.identity : lookupIterator(iterator);
   var value = iterator.call(context, obj);
   var low = 0, high = array.length;
-  while (low &#x3c; high) {
-    var mid = (low + high) &#x3e;&#x3e;&#x3e; 1;
-    iterator.call(context, array[mid]) &#x3c; value ? low = mid + 1 : high = mid;
+  while (low &lt; high) {
+    var mid = (low + high) &gt;&gt;&gt; 1;
+    iterator.call(context, array[mid]) &lt; value ? low = mid + 1 : high = mid;
   }
   return low;
 }</pre></li>
@@ -4449,15 +4443,15 @@ _.indexOf = function(array, item, isSorted) {
   if (array == null) return -1;
   var i = 0, l = array.length;
   if (isSorted) {
-    if (typeof isSorted == &#x27;number&#x27;) {
-      i = (isSorted &#x3c; 0 ? Math.max(0, l + isSorted) : isSorted);
+    if (typeof isSorted == 'number') {
+      i = (isSorted &lt; 0 ? Math.max(0, l + isSorted) : isSorted);
     } else {
       i = _.<span class="apidocCodeKeywordSpan">sortedIndex</span>(array, item);
       return array[i] === item ? i : -1;
     }
   }
-  if (nativeIndexOf &#x26;&#x26; array.indexOf === nativeIndexOf) return array.indexOf(item, isSorted);
-  for (; i &#x3c; l; i++) if (array[i] === item) return i;
+  if (nativeIndexOf &amp;&amp; array.indexOf === nativeIndexOf) return array.indexOf(item, isSorted);
+  for (; i &lt; l; i++) if (array[i] === item) return i;
   return -1;
 };
 ...</pre></li>
@@ -4489,7 +4483,7 @@ _.indexOf = function(array, item, isSorted) {
     <ul>
     <li>description and source-code<pre class="apidocCodePre">take = function (array, n, guard) {
   if (array == null) return void 0;
-  return (n != null) &#x26;&#x26; !guard ? slice.call(array, 0, n) : array[0];
+  return (n != null) &amp;&amp; !guard ? slice.call(array, 0, n) : array[0];
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
@@ -4528,38 +4522,38 @@ _.indexOf = function(array, item, isSorted) {
     (settings.escape || noMatch).source,
     (settings.interpolate || noMatch).source,
     (settings.evaluate || noMatch).source
-  ].join(&#x27;|&#x27;) + &#x27;|$&#x27;, &#x27;g&#x27;);
+  ].join('|') + '|$', 'g');
 
   // Compile the template source, escaping string literals appropriately.
   var index = 0;
-  var source = &#x22;__p+=&#x27;&#x22;;
+  var source = "__p+='";
   text.replace(matcher, function(match, escape, interpolate, evaluate, offset) {
     source += text.slice(index, offset)
-      .replace(escaper, function(match) { return &#x27;\\&#x27; + escapes[match]; });
+      .replace(escaper, function(match) { return '\\' + escapes[match]; });
 
     if (escape) {
-      source += &#x22;&#x27;+\n((__t=(&#x22; + escape + &#x22;))==null?&#x27;&#x27;:_.escape(__t))+\n&#x27;&#x22;;
+      source += "'+\n((__t=(" + escape + "))==null?'':_.escape(__t))+\n'";
     }
     if (interpolate) {
-      source += &#x22;&#x27;+\n((__t=(&#x22; + interpolate + &#x22;))==null?&#x27;&#x27;:__t)+\n&#x27;&#x22;;
+      source += "'+\n((__t=(" + interpolate + "))==null?'':__t)+\n'";
     }
     if (evaluate) {
-      source += &#x22;&#x27;;\n&#x22; + evaluate + &#x22;\n__p+=&#x27;&#x22;;
+      source += "';\n" + evaluate + "\n__p+='";
     }
     index = offset + match.length;
     return match;
   });
-  source += &#x22;&#x27;;\n&#x22;;
+  source += "';\n";
 
   // If a variable is not specified, place data values in local scope.
-  if (!settings.variable) source = &#x27;with(obj||{}){\n&#x27; + source + &#x27;}\n&#x27;;
+  if (!settings.variable) source = 'with(obj||{}){\n' + source + '}\n';
 
-  source = &#x22;var __t,__p=&#x27;&#x27;,__j=Array.prototype.join,&#x22; +
-    &#x22;print=function(){__p+=__j.call(arguments,&#x27;&#x27;);};\n&#x22; +
-    source + &#x22;return __p;\n&#x22;;
+  source = "var __t,__p='',__j=Array.prototype.join," +
+    "print=function(){__p+=__j.call(arguments,'');};\n" +
+    source + "return __p;\n";
 
   try {
-    render = new Function(settings.variable || &#x27;obj&#x27;, &#x27;_&#x27;, source);
+    render = new Function(settings.variable || 'obj', '_', source);
   } catch (e) {
     e.source = source;
     throw e;
@@ -4571,7 +4565,7 @@ _.indexOf = function(array, item, isSorted) {
   };
 
   // Provide the compiled function source as a convenience for precompilation.
-  template.source = &#x27;function(&#x27; + (settings.variable || &#x27;obj&#x27;) + &#x27;){\n&#x27; + source + &#x27;}&#x27;;
+  template.source = 'function(' + (settings.variable || 'obj') + '){\n' + source + '}';
 
   return template;
 }</pre></li>
@@ -4600,7 +4594,7 @@ _.indexOf = function(array, item, isSorted) {
     var remaining = wait - (now - previous);
     context = this;
     args = arguments;
-    if (remaining &#x3c;= 0) {
+    if (remaining &lt;= 0) {
       clearTimeout(timeout);
       timeout = null;
       previous = now;
@@ -4625,7 +4619,7 @@ _.indexOf = function(array, item, isSorted) {
     <ul>
     <li>description and source-code<pre class="apidocCodePre">times = function (n, iterator, context) {
   var accum = Array(n);
-  for (var i = 0; i &#x3c; n; i++) accum[i] = iterator.call(context, i);
+  for (var i = 0; i &lt; n; i++) accum[i] = iterator.call(context, i);
   return accum;
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
@@ -4659,8 +4653,8 @@ _.indexOf = function(array, item, isSorted) {
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">unescape = function (string) {
-  if (string == null) return &#x27;&#x27;;
-  return (&#x27;&#x27; + string).replace(entityRegexes[method], function(match) {
+  if (string == null) return '';
+  return ('' + string).replace(entityRegexes[method], function(match) {
     return entityMap[method][match];
   });
 }</pre></li>
@@ -4766,7 +4760,7 @@ _.intersection = function(array) {
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">uniqueId = function (prefix) {
-  var id = ++idCounter + &#x27;&#x27;;
+  var id = ++idCounter + '';
   return prefix ? prefix + id : id;
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
@@ -4816,7 +4810,7 @@ _.size = function(obj) {
     <ul>
     <li>description and source-code<pre class="apidocCodePre">where = function (obj, attrs, first) {
   if (_.isEmpty(attrs)) return first ? null : [];
-  return _[first ? &#x27;find&#x27; : &#x27;filter&#x27;](obj, function(value) {
+  return _[first ? 'find' : 'filter'](obj, function(value) {
     for (var key in attrs) {
       if (attrs[key] !== value[key]) return false;
     }
@@ -4835,10 +4829,10 @@ _.findWhere = function(obj, attrs) {
 };
 
 // Return the maximum element or (element-based computation).
-// Can&#x27;t optimize arrays of integers longer than 65,535 elements.
+// Can't optimize arrays of integers longer than 65,535 elements.
 // See: https://bugs.webkit.org/show_bug.cgi?id=80797
 _.max = function(obj, iterator, context) {
-  if (!iterator &#x26;&#x26; _.isArray(obj) &#x26;&#x26; obj[0] === +obj[0] &#x26;&#x26; obj.length &#x3c; 65535) {
+  if (!iterator &amp;&amp; _.isArray(obj) &amp;&amp; obj[0] === +obj[0] &amp;&amp; obj.length &lt; 65535) {
 ...</pre></li>
     </ul>
 
@@ -4887,10 +4881,10 @@ _.max = function(obj, iterator, context) {
     <ul>
     <li>description and source-code<pre class="apidocCodePre">zip = function () {
   var args = slice.call(arguments);
-  var length = _.max(_.pluck(args, &#x27;length&#x27;));
+  var length = _.max(_.pluck(args, 'length'));
   var results = new Array(length);
-  for (var i = 0; i &#x3c; length; i++) {
-    results[i] = _.pluck(args, &#x22;&#x22; + i);
+  for (var i = 0; i &lt; length; i++) {
+    results[i] = _.pluck(args, "" + i);
   }
   return results;
 }</pre></li>
@@ -4991,11 +4985,11 @@ _.max = function(obj, iterator, context) {
     <li>example usage<pre class="apidocCodePre">...
 
 // **Reduce** builds up a single result from a list of values, aka `inject`,
-// or `foldl`. Delegates to **ECMAScript 5**&#x27;s native `reduce` if available.
+// or `foldl`. Delegates to **ECMAScript 5**'s native `reduce` if available.
 _.reduce = _.foldl = _.inject = function(obj, iterator, memo, context) {
-  var initial = arguments.length &#x3e; 2;
+  var initial = arguments.length &gt; 2;
   if (obj == null) obj = [];
-  if (nativeReduce &#x26;&#x26; obj.reduce === nativeReduce) {
+  if (nativeReduce &amp;&amp; obj.reduce === nativeReduce) {
     if (context) iterator = _.<span class="apidocCodeKeywordSpan">bind</span>(iterator, context);
     return initial ? obj.reduce(iterator, memo) : obj.reduce(iterator);
   }
@@ -5038,12 +5032,12 @@ _.reduce = _.foldl = _.inject = function(obj, iterator, memo, context) {
   return this;
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
-  template.source = &#x27;function(&#x27; + (settings.variable || &#x27;obj&#x27;) + &#x27;){\n&#x27; + source + &#x27;}&#x27;;
+  template.source = 'function(' + (settings.variable || 'obj') + '){\n' + source + '}';
 
   return template;
 };
 
-// Add a &#x22;chain&#x22; function, which will delegate to the wrapper.
+// Add a "chain" function, which will delegate to the wrapper.
 _.chain = function(obj) {
   return _(obj).<span class="apidocCodeKeywordSpan">chain</span>();
 };
@@ -5138,10 +5132,10 @@ _.chain = function(obj) {
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
 // Create a function bound to a given object (assigning `this`, and arguments,
-// optionally). Delegates to **ECMAScript 5**&#x27;s native `Function.bind` if
+// optionally). Delegates to **ECMAScript 5**'s native `Function.bind` if
 // available.
 _.bind = function(func, context) {
-  if (func.bind === nativeBind &#x26;&#x26; nativeBind) return nativeBind.apply(func, slice.call(arguments, 1));
+  if (func.bind === nativeBind &amp;&amp; nativeBind) return nativeBind.apply(func, slice.call(arguments, 1));
   var args = slice.call(arguments, 2);
   return function() {
     return func.apply(context, args.<span class="apidocCodeKeywordSpan">concat</span>(slice.call(arguments)));
@@ -5237,9 +5231,9 @@ _.partial = function(func) {
   return result.call(this, func.apply(_, args));
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
-  var escaper = /\\|&#x27;|\r|\n|\t|\u2028|\u2029/g;
+  var escaper = /\\|'|\r|\n|\t|\u2028|\u2029/g;
 
-  // JavaScript micro-templating, similar to John Resig&#x27;s implementation.
+  // JavaScript micro-templating, similar to John Resig's implementation.
   // Underscore templating handles arbitrary delimiters, preserves whitespace,
   // and correctly escapes quotes within interpolated code.
   _.template = function(text, data, settings) {
@@ -5251,7 +5245,7 @@ var matcher = new RegExp([
   (settings.escape || noMatch).source,
   (settings.interpolate || noMatch).source,
   (settings.evaluate || noMatch).source
-].join(&#x27;|&#x27;) + &#x27;|$&#x27;, &#x27;g&#x27;);
+].join('|') + '|$', 'g');
 ...</pre></li>
     </ul>
 
@@ -5373,15 +5367,15 @@ _.uniq = _.unique = function(array, isSorted, iterator, context) {
     <li>example usage<pre class="apidocCodePre">...
 // Regexes containing the keys and values listed immediately above.
 var entityRegexes = {
-  escape:   new RegExp(&#x27;[&#x27; + _.keys(entityMap.escape).join(&#x27;&#x27;) + &#x27;]&#x27;, &#x27;g&#x27;),
-  unescape: new RegExp(&#x27;(&#x27; + _.keys(entityMap.unescape).join(&#x27;|&#x27;) + &#x27;)&#x27;, &#x27;g&#x27;)
+  escape:   new RegExp('[' + _.keys(entityMap.escape).join('') + ']', 'g'),
+  unescape: new RegExp('(' + _.keys(entityMap.unescape).join('|') + ')', 'g')
 };
 
 // Functions for escaping and unescaping strings to/from HTML interpolation.
-_.<span class="apidocCodeKeywordSpan">each</span>([&#x27;escape&#x27;, &#x27;unescape&#x27;], function(method) {
+_.<span class="apidocCodeKeywordSpan">each</span>(['escape', 'unescape'], function(method) {
   _[method] = function(string) {
-    if (string == null) return &#x27;&#x27;;
-    return (&#x27;&#x27; + string).replace(entityRegexes[method], function(match) {
+    if (string == null) return '';
+    return ('' + string).replace(entityRegexes[method], function(match) {
       return entityMap[method][match];
     });
   };
@@ -5405,20 +5399,19 @@ _.<span class="apidocCodeKeywordSpan">each</span>([&#x27;escape&#x27;, &#x27;une
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
     var index = 0;
-    var source = &#x22;__p+=&#x27;&#x22;;
+    var source = "__p+='";
     text.replace(matcher, function(match, escape, interpolate, evaluate, offset) {
 source += text.slice(index, offset)
-  .replace(escaper, function(match) { return &#x27;\\&#x27; + escapes[match]; });
+  .replace(escaper, function(match) { return '\\' + escapes[match]; });
 
 if (escape) {
-  source += &#x22;&#x27;+\n((__t=(&#x22; + escape + &#x22;))==null?&#x27;&#x27;:_.<span class="apidocCodeKeywordSpan">escape</span
->(__t))+\n&#x27;&#x22;;
+  source += "'+\n((__t=(" + escape + "))==null?'':_.<span class="apidocCodeKeywordSpan">escape</span>(__t))+\n'";
 }
 if (interpolate) {
-  source += &#x22;&#x27;+\n((__t=(&#x22; + interpolate + &#x22;))==null?&#x27;&#x27;:__t)+\n&#x27;&#x22;;
+  source += "'+\n((__t=(" + interpolate + "))==null?'':__t)+\n'";
 }
 if (evaluate) {
-  source += &#x22;&#x27;;\n&#x22; + evaluate + &#x22;\n__p+=&#x27;&#x22;;
+  source += "';\n" + evaluate + "\n__p+='";
 }
 ...</pre></li>
     </ul>
@@ -5439,16 +5432,16 @@ if (evaluate) {
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
 // Determine whether all of the elements match a truth test.
-// Delegates to **ECMAScript 5**&#x27;s native `every` if available.
+// Delegates to **ECMAScript 5**'s native `every` if available.
 // Aliased as `all`.
 _.every = _.all = function(obj, iterator, context) {
   iterator || (iterator = _.identity);
   var result = true;
   if (obj == null) return result;
-  if (nativeEvery &#x26;&#x26; obj.every === nativeEvery) return obj.<span class="apidocCodeKeywordSpan">every</span>(iterator,
+  if (nativeEvery &amp;&amp; obj.every === nativeEvery) return obj.<span class="apidocCodeKeywordSpan">every</span>(iterator,
 context);
   each(obj, function(value, index, list) {
-    if (!(result = result &#x26;&#x26; iterator.call(context, value, index, list))) return breaker;
+    if (!(result = result &amp;&amp; iterator.call(context, value, index, list))) return breaker;
   });
   return !!result;
 };
@@ -5483,7 +5476,7 @@ _.clone = function(obj) {
 };
 
 // Invokes interceptor with the obj, and then returns obj.
-// The primary purpose of this method is to &#x22;tap into&#x22; a method chain, in
+// The primary purpose of this method is to "tap into" a method chain, in
 // order to perform operations on intermediate results within the chain.
 _.tap = function(obj, interceptor) {
   interceptor(obj);
@@ -5507,12 +5500,12 @@ _.tap = function(obj, interceptor) {
     <li>example usage<pre class="apidocCodePre">...
 
 // Return all the elements that pass a truth test.
-// Delegates to **ECMAScript 5**&#x27;s native `filter` if available.
+// Delegates to **ECMAScript 5**'s native `filter` if available.
 // Aliased as `select`.
 _.filter = _.select = function(obj, iterator, context) {
   var results = [];
   if (obj == null) return results;
-  if (nativeFilter &#x26;&#x26; obj.filter === nativeFilter) return obj.<span class="apidocCodeKeywordSpan">filter</span>(iterator
+  if (nativeFilter &amp;&amp; obj.filter === nativeFilter) return obj.<span class="apidocCodeKeywordSpan">filter</span>(iterator
 , context);
   each(obj, function(value, index, list) {
     if (iterator.call(context, value, index, list)) results[results.length] = value;
@@ -5644,13 +5637,13 @@ _.filter = _.select = function(obj, iterator, context) {
 
 // The cornerstone, an `each` implementation, aka `forEach`.
 // Handles objects with the built-in `forEach`, arrays, and raw objects.
-// Delegates to **ECMAScript 5**&#x27;s native `forEach` if available.
+// Delegates to **ECMAScript 5**'s native `forEach` if available.
 var each = _.each = _.forEach = function(obj, iterator, context) {
   if (obj == null) return;
-  if (nativeForEach &#x26;&#x26; obj.forEach === nativeForEach) {
+  if (nativeForEach &amp;&amp; obj.forEach === nativeForEach) {
     obj.<span class="apidocCodeKeywordSpan">forEach</span>(iterator, context);
   } else if (obj.length === +obj.length) {
-    for (var i = 0, l = obj.length; i &#x3c; l; i++) {
+    for (var i = 0, l = obj.length; i &lt; l; i++) {
       if (iterator.call(context, obj[i], i, obj) === breaker) return;
     }
   } else {
@@ -5677,7 +5670,7 @@ var each = _.each = _.forEach = function(obj, iterator, context) {
   };
 };
 
-// Bind all of an object&#x27;s methods to that object. Useful for ensuring that
+// Bind all of an object's methods to that object. Useful for ensuring that
 // all callbacks defined on an object belong to it.
 _.bindAll = function(obj) {
   var funcs = slice.call(arguments, 1);
@@ -5726,7 +5719,7 @@ _.memoize = function(func, hasher) {
     <li>example usage<pre class="apidocCodePre">...
     obj.forEach(iterator, context);
   } else if (obj.length === +obj.length) {
-    for (var i = 0, l = obj.length; i &#x3c; l; i++) {
+    for (var i = 0, l = obj.length; i &lt; l; i++) {
       if (iterator.call(context, obj[i], i, obj) === breaker) return;
     }
   } else {
@@ -5815,7 +5808,7 @@ _.memoize = function(func, hasher) {
 // Aliased as `include`.
 _.contains = _.include = function(obj, target) {
   if (obj == null) return false;
-  if (nativeIndexOf &#x26;&#x26; obj.indexOf === nativeIndexOf) return obj.<span class="apidocCodeKeywordSpan">indexOf</span>(target
+  if (nativeIndexOf &amp;&amp; obj.indexOf === nativeIndexOf) return obj.<span class="apidocCodeKeywordSpan">indexOf</span>(target
 ) != -1;
   return any(obj, function(value) {
     return value === target;
@@ -5893,19 +5886,19 @@ _.invoke = function(obj, method) {
   return result.call(this, func.apply(_, args));
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
-    &#x27;&#x3c;&#x27;: &#x27;&#x26;lt;&#x27;,
-    &#x27;&#x3e;&#x27;: &#x27;&#x26;gt;&#x27;,
-    &#x27;&#x22;&#x27;: &#x27;&#x26;quot;&#x27;,
-    &#x22;&#x27;&#x22;: &#x27;&#x26;#x27;&#x27;,
-    &#x27;/&#x27;: &#x27;&#x26;#x2F;&#x27;
+    '&lt;': '&amp;lt;',
+    '&gt;': '&amp;gt;',
+    '"': '&amp;quot;',
+    "'": '&amp;#x27;',
+    '/': '&amp;#x2F;'
   }
 };
 entityMap.unescape = _.<span class="apidocCodeKeywordSpan">invert</span>(entityMap.escape);
 
 // Regexes containing the keys and values listed immediately above.
 var entityRegexes = {
-  escape:   new RegExp(&#x27;[&#x27; + _.keys(entityMap.escape).join(&#x27;&#x27;) + &#x27;]&#x27;, &#x27;g&#x27;),
-  unescape: new RegExp(&#x27;(&#x27; + _.keys(entityMap.unescape).join(&#x27;|&#x27;) + &#x27;)&#x27;, &#x27;g&#x27;)
+  escape:   new RegExp('[' + _.keys(entityMap.escape).join('') + ']', 'g'),
+  unescape: new RegExp('(' + _.keys(entityMap.unescape).join('|') + ')', 'g')
 };
 ...</pre></li>
     </ul>
@@ -5942,21 +5935,21 @@ var entityRegexes = {
   return result.call(this, func.apply(_, args));
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
-  _[&#x27;is&#x27; + name] = function(obj) {
-    return toString.call(obj) == &#x27;[object &#x27; + name + &#x27;]&#x27;;
+  _['is' + name] = function(obj) {
+    return toString.call(obj) == '[object ' + name + ']';
   };
 });
 
 // Define a fallback version of the method in browsers (ahem, IE), where
-// there isn&#x27;t any inspectable &#x22;Arguments&#x22; type.
+// there isn't any inspectable "Arguments" type.
 if (!_.<span class="apidocCodeKeywordSpan">isArguments</span>(arguments)) {
   _.isArguments = function(obj) {
-    return !!(obj &#x26;&#x26; _.has(obj, &#x27;callee&#x27;));
+    return !!(obj &amp;&amp; _.has(obj, 'callee'));
   };
 }
 
 // Optimize `isFunction` if appropriate.
-if (typeof (/./) !== &#x27;function&#x27;) {
+if (typeof (/./) !== 'function') {
 ...</pre></li>
     </ul>
 
@@ -5979,18 +5972,18 @@ if (typeof (/./) !== &#x27;function&#x27;) {
 };
 
 // Return the maximum element or (element-based computation).
-// Can&#x27;t optimize arrays of integers longer than 65,535 elements.
+// Can't optimize arrays of integers longer than 65,535 elements.
 // See: https://bugs.webkit.org/show_bug.cgi?id=80797
 _.max = function(obj, iterator, context) {
-  if (!iterator &#x26;&#x26; _.<span class="apidocCodeKeywordSpan">isArray</span>(obj) &#x26;&#x26; obj[0] === +obj[0] &#x26;&#x26
-; obj.length &#x3c; 65535) {
+  if (!iterator &amp;&amp; _.<span class="apidocCodeKeywordSpan">isArray</span>(obj) &amp;&amp; obj[0] === +obj[0] &amp;&amp;
+; obj.length &lt; 65535) {
     return Math.max.apply(Math, obj);
   }
-  if (!iterator &#x26;&#x26; _.isEmpty(obj)) return -Infinity;
+  if (!iterator &amp;&amp; _.isEmpty(obj)) return -Infinity;
   var result = {computed : -Infinity, value: -Infinity};
   each(obj, function(value, index, list) {
     var computed = iterator ? iterator.call(context, value, index, list) : value;
-    computed &#x3e;= result.computed &#x26;&#x26; (result = {value : value, computed : computed});
+    computed &gt;= result.computed &amp;&amp; (result = {value : value, computed : computed});
 ...</pre></li>
     </ul>
 
@@ -6068,7 +6061,7 @@ _.pluck = function(obj, key) {
 // containing specific `key:value` pairs.
 _.where = function(obj, attrs, first) {
   if (_.<span class="apidocCodeKeywordSpan">isEmpty</span>(attrs)) return first ? null : [];
-  return _[first ? &#x27;find&#x27; : &#x27;filter&#x27;](obj, function(value) {
+  return _[first ? 'find' : 'filter'](obj, function(value) {
     for (var key in attrs) {
       if (attrs[key] !== value[key]) return false;
     }
@@ -6196,17 +6189,17 @@ _.pluck = function(obj, key) {
     <li>example usage<pre class="apidocCodePre">...
 // Is a given object a finite number?
 _.isFinite = function(obj) {
-  return isFinite(obj) &#x26;&#x26; !isNaN(parseFloat(obj));
+  return isFinite(obj) &amp;&amp; !isNaN(parseFloat(obj));
 };
 
 // Is the given value `NaN`? (NaN is the only number which does not equal itself).
 _.isNaN = function(obj) {
-  return _.<span class="apidocCodeKeywordSpan">isNumber</span>(obj) &#x26;&#x26; obj != +obj;
+  return _.<span class="apidocCodeKeywordSpan">isNumber</span>(obj) &amp;&amp; obj != +obj;
 };
 
 // Is a given value a boolean?
 _.isBoolean = function(obj) {
-  return obj === true || obj === false || toString.call(obj) == &#x27;[object Boolean]&#x27;;
+  return obj === true || obj === false || toString.call(obj) == '[object Boolean]';
 };
 ...</pre></li>
     </ul>
@@ -6238,7 +6231,7 @@ _.clone = function(obj) {
 };
 
 // Invokes interceptor with the obj, and then returns obj.
-// The primary purpose of this method is to &#x22;tap into&#x22; a method chain, in
+// The primary purpose of this method is to "tap into" a method chain, in
 // order to perform operations on intermediate results within the chain.
 _.tap = function(obj, interceptor) {
 ...</pre></li>
@@ -6280,7 +6273,7 @@ _.tap = function(obj, interceptor) {
 };
 
 // Is a given array, string, or object empty?
-// An &#x22;empty&#x22; object has no enumerable own-properties.
+// An "empty" object has no enumerable own-properties.
 _.isEmpty = function(obj) {
   if (obj == null) return true;
   if (_.isArray(obj) || _.<span class="apidocCodeKeywordSpan">isString</span>(obj)) return obj.length === 0;
@@ -6290,7 +6283,7 @@ _.isEmpty = function(obj) {
 
 // Is a given value a DOM element?
 _.isElement = function(obj) {
-  return !!(obj &#x26;&#x26; obj.nodeType === 1);
+  return !!(obj &amp;&amp; obj.nodeType === 1);
 ...</pre></li>
     </ul>
 
@@ -6325,20 +6318,20 @@ _.isElement = function(obj) {
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
     dr: {
-      command: &#x22;node node_modules/dr.js/dr dr.json&#x22;
+      command: "node node_modules/dr.js/dr dr.json"
     },
     test: {
-      command: &#x22;cd test; phantomjs test.js&#x22;
+      command: "cd test; phantomjs test.js"
     },
     eslint: {
-        command: &#x22;./node_modules/eslint/bin/eslint.js &#x22; + core.<span class="apidocCodeKeywordSpan">join</span>(&#x22; &#
+        command: "./node_modules/eslint/bin/eslint.js " + core.<span class="apidocCodeKeywordSpan">join</span>(" &amp;#
 x22;)
     },
 },
 prettify: {
     options: {
         indent: 4,
-        indent_char: &#x22; &#x22;,
+        indent_char: " ",
         wrap_line_length: 80,
 ...</pre></li>
     </ul>
@@ -6359,7 +6352,7 @@ prettify: {
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
 if (obj == null) obj = [];
-if (nativeReduceRight &#x26;&#x26; obj.reduceRight === nativeReduceRight) {
+if (nativeReduceRight &amp;&amp; obj.reduceRight === nativeReduceRight) {
   if (context) iterator = _.bind(iterator, context);
   return initial ? obj.reduceRight(iterator, memo) : obj.reduceRight(iterator);
 }
@@ -6410,11 +6403,11 @@ each(obj, function(value, index, list) {
     <li>example usage<pre class="apidocCodePre">...
 };
 
-// Delegates to **ECMAScript 5**&#x27;s native `lastIndexOf` if available.
+// Delegates to **ECMAScript 5**'s native `lastIndexOf` if available.
 _.lastIndexOf = function(array, item, from) {
   if (array == null) return -1;
   var hasIndex = from != null;
-  if (nativeLastIndexOf &#x26;&#x26; array.lastIndexOf === nativeLastIndexOf) {
+  if (nativeLastIndexOf &amp;&amp; array.lastIndexOf === nativeLastIndexOf) {
     return hasIndex ? array.<span class="apidocCodeKeywordSpan">lastIndexOf</span>(item, from) : array.lastIndexOf(item);
   }
   var i = (hasIndex ? from : array.length);
@@ -6444,18 +6437,18 @@ _.lastIndexOf = function(array, item, from) {
 };
 
 // Return the results of applying the iterator to each element.
-// Delegates to **ECMAScript 5**&#x27;s native `map` if available.
+// Delegates to **ECMAScript 5**'s native `map` if available.
 _.map = _.collect = function(obj, iterator, context) {
   var results = [];
   if (obj == null) return results;
-  if (nativeMap &#x26;&#x26; obj.map === nativeMap) return obj.<span class="apidocCodeKeywordSpan">map</span>(iterator, context);
+  if (nativeMap &amp;&amp; obj.map === nativeMap) return obj.<span class="apidocCodeKeywordSpan">map</span>(iterator, context);
   each(obj, function(value, index, list) {
     results[results.length] = iterator.call(context, value, index, list);
   });
   return results;
 };
 
-var reduceError = &#x27;Reduce of empty array with no initial value&#x27;;
+var reduceError = 'Reduce of empty array with no initial value';
 ...</pre></li>
     </ul>
 
@@ -6480,7 +6473,7 @@ var reduceError = &#x27;Reduce of empty array with no initial value&#x27;;
 // values in the array. The **guard** check allows it to work with `_.map`.
 _.last = function(array, n, guard) {
   if (array == null) return void 0;
-  if ((n != null) &#x26;&#x26; !guard) {
+  if ((n != null) &amp;&amp; !guard) {
     return slice.call(array, Math.<span class="apidocCodeKeywordSpan">max</span>(array.length - n, 0));
   } else {
     return array[array.length - 1];
@@ -6568,8 +6561,8 @@ var result = function(obj) {
 _.<span class="apidocCodeKeywordSpan">mixin</span>(_);
 
 // Add all mutator Array functions to the wrapper.
-each([&#x27;pop&#x27;, &#x27;push&#x27;, &#x27;reverse&#x27;, &#x27;shift&#x27;, &#x27;sort&#x27;, &#x27;splice&#x27;, &#x27;unshift
-&#x27;], function(name) {
+each(['pop', 'push', 'reverse', 'shift', 'sort', 'splice', 'unshift
+'], function(name) {
   var method = ArrayProto[name];
   _.prototype[name] = function() {
     var obj = this._wrapped;
@@ -6715,7 +6708,7 @@ var lookupIterator = function(value) {
   return _.isFunction(value) ? value : function(obj){ return obj[value]; };
 };
 
-// Sort the object&#x27;s values by a criterion produced by an iterator.
+// Sort the object's values by a criterion produced by an iterator.
 _.sortBy = function(obj, value, context) {
   var iterator = lookupIterator(value);
   return _.<span class="apidocCodeKeywordSpan">pluck</span>(_.map(obj, function(value, index, list) {
@@ -6741,12 +6734,12 @@ _.sortBy = function(obj, value, context) {
     <li>description and source-code<pre class="apidocCodePre">pop = function () {
   var obj = this._wrapped;
   method.apply(obj, arguments);
-  if ((name == &#x27;shift&#x27; || name == &#x27;splice&#x27;) &#x26;&#x26; obj.length === 0) delete obj[0];
+  if ((name == 'shift' || name == 'splice') &amp;&amp; obj.length === 0) delete obj[0];
   return result.call(this, obj);
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
       for (key in b) {
-        if (_.has(b, key) &#x26;&#x26; !(size--)) break;
+        if (_.has(b, key) &amp;&amp; !(size--)) break;
       }
       result = !size;
     }
@@ -6775,25 +6768,25 @@ _.isEqual = function(a, b) {
     <li>description and source-code<pre class="apidocCodePre">push = function () {
   var obj = this._wrapped;
   method.apply(obj, arguments);
-  if ((name == &#x27;shift&#x27; || name == &#x27;splice&#x27;) &#x26;&#x26; obj.length === 0) delete obj[0];
+  if ((name == 'shift' || name == 'splice') &amp;&amp; obj.length === 0) delete obj[0];
   return result.call(this, obj);
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
 //
 //   Math.seedrandom(autoseed);           // Restart at the previous seed.
-//   document.write(Math.random());       // Repeat the &#x27;unpredictable&#x27; x.
+//   document.write(Math.random());       // Repeat the 'unpredictable' x.
 //
 //   function reseed(event, count) {      // Define a custom entropy collector.
 //     var t = [];
 //     function w(e) {
 //       t.<span class="apidocCodeKeywordSpan">push</span>([e.pageX, e.pageY, +new Date]);
-//       if (t.length &#x3c; count) { return; }
+//       if (t.length &lt; count) { return; }
 //       document.removeEventListener(event, w);
 //       Math.seedrandom(t, true);        // Mix in any previous entropy.
 //     }
 //     document.addEventListener(event, w);
 //   }
-//   reseed(&#x27;mousemove&#x27;, 100);            // Reseed after 100 mouse moves.
+//   reseed('mousemove', 100);            // Reseed after 100 mouse moves.
 ...</pre></li>
     </ul>
 
@@ -6863,11 +6856,11 @@ _.isEqual = function(a, b) {
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
 // **Reduce** builds up a single result from a list of values, aka `inject`,
-// or `foldl`. Delegates to **ECMAScript 5**&#x27;s native `reduce` if available.
+// or `foldl`. Delegates to **ECMAScript 5**'s native `reduce` if available.
 _.reduce = _.foldl = _.inject = function(obj, iterator, memo, context) {
-  var initial = arguments.length &#x3e; 2;
+  var initial = arguments.length &gt; 2;
   if (obj == null) obj = [];
-  if (nativeReduce &#x26;&#x26; obj.reduce === nativeReduce) {
+  if (nativeReduce &amp;&amp; obj.reduce === nativeReduce) {
     if (context) iterator = _.bind(iterator, context);
     return initial ? obj.<span class="apidocCodeKeywordSpan">reduce</span>(iterator, memo) : obj.reduce(iterator);
   }
@@ -6896,11 +6889,11 @@ _.reduce = _.foldl = _.inject = function(obj, iterator, memo, context) {
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
 // The right-associative version of reduce, also known as `foldr`.
-// Delegates to **ECMAScript 5**&#x27;s native `reduceRight` if available.
+// Delegates to **ECMAScript 5**'s native `reduceRight` if available.
 _.reduceRight = _.foldr = function(obj, iterator, memo, context) {
-  var initial = arguments.length &#x3e; 2;
+  var initial = arguments.length &gt; 2;
   if (obj == null) obj = [];
-  if (nativeReduceRight &#x26;&#x26; obj.reduceRight === nativeReduceRight) {
+  if (nativeReduceRight &amp;&amp; obj.reduceRight === nativeReduceRight) {
     if (context) iterator = _.bind(iterator, context);
     return initial ? obj.<span class="apidocCodeKeywordSpan">reduceRight</span>(iterator, memo) : obj.reduceRight(iterator);
   }
@@ -6976,7 +6969,7 @@ _.reduceRight = _.foldr = function(obj, iterator, memo, context) {
     <li>description and source-code<pre class="apidocCodePre">reverse = function () {
   var obj = this._wrapped;
   method.apply(obj, arguments);
-  if ((name == &#x27;shift&#x27; || name == &#x27;splice&#x27;) &#x26;&#x26; obj.length === 0) delete obj[0];
+  if ((name == 'shift' || name == 'splice') &amp;&amp; obj.length === 0) delete obj[0];
   return result.call(this, obj);
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
@@ -7011,7 +7004,7 @@ _.reduceRight = _.foldr = function(obj, iterator, memo, context) {
     <li>description and source-code<pre class="apidocCodePre">shift = function () {
   var obj = this._wrapped;
   method.apply(obj, arguments);
-  if ((name == &#x27;shift&#x27; || name == &#x27;splice&#x27;) &#x26;&#x26; obj.length === 0) delete obj[0];
+  if ((name == 'shift' || name == 'splice') &amp;&amp; obj.length === 0) delete obj[0];
   return result.call(this, obj);
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
@@ -7075,7 +7068,7 @@ _.clone = function(obj) {
 };
 
 // Invokes interceptor with the obj, and then returns obj.
-// The primary purpose of this method is to &#x22;tap into&#x22; a method chain, in
+// The primary purpose of this method is to "tap into" a method chain, in
 // order to perform operations on intermediate results within the chain.
 _.tap = function(obj, interceptor) {
   interceptor(obj);
@@ -7098,13 +7091,13 @@ _.tap = function(obj, interceptor) {
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
 // Determine if at least one element in the object matches a truth test.
-// Delegates to **ECMAScript 5**&#x27;s native `some` if available.
+// Delegates to **ECMAScript 5**'s native `some` if available.
 // Aliased as `any`.
 var any = _.some = _.any = function(obj, iterator, context) {
   iterator || (iterator = _.identity);
   var result = false;
   if (obj == null) return result;
-  if (nativeSome &#x26;&#x26; obj.some === nativeSome) return obj.<span class="apidocCodeKeywordSpan">some</span>(iterator, context
+  if (nativeSome &amp;&amp; obj.some === nativeSome) return obj.<span class="apidocCodeKeywordSpan">some</span>(iterator, context
 );
   each(obj, function(value, index, list) {
     if (result || (result = iterator.call(context, value, index, list))) return breaker;
@@ -7128,7 +7121,7 @@ var any = _.some = _.any = function(obj, iterator, context) {
     <li>description and source-code<pre class="apidocCodePre">sort = function () {
   var obj = this._wrapped;
   method.apply(obj, arguments);
-  if ((name == &#x27;shift&#x27; || name == &#x27;splice&#x27;) &#x26;&#x26; obj.length === 0) delete obj[0];
+  if ((name == 'shift' || name == 'splice') &amp;&amp; obj.length === 0) delete obj[0];
   return result.call(this, obj);
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
@@ -7143,10 +7136,10 @@ return _.pluck(_.map(obj, function(value, index, list) {
   var a = left.criteria;
   var b = right.criteria;
   if (a !== b) {
-    if (a &#x3e; b || a === void 0) return 1;
-    if (a &#x3c; b || b === void 0) return -1;
+    if (a &gt; b || a === void 0) return 1;
+    if (a &lt; b || b === void 0) return -1;
   }
-  return left.index &#x3c; right.index ? -1 : 1;
+  return left.index &lt; right.index ? -1 : 1;
 ...</pre></li>
     </ul>
 
@@ -7186,15 +7179,15 @@ _.indexOf = function(array, item, isSorted) {
   if (array == null) return -1;
   var i = 0, l = array.length;
   if (isSorted) {
-    if (typeof isSorted == &#x27;number&#x27;) {
-      i = (isSorted &#x3c; 0 ? Math.max(0, l + isSorted) : isSorted);
+    if (typeof isSorted == 'number') {
+      i = (isSorted &lt; 0 ? Math.max(0, l + isSorted) : isSorted);
     } else {
       i = _.<span class="apidocCodeKeywordSpan">sortedIndex</span>(array, item);
       return array[i] === item ? i : -1;
     }
   }
-  if (nativeIndexOf &#x26;&#x26; array.indexOf === nativeIndexOf) return array.indexOf(item, isSorted);
-  for (; i &#x3c; l; i++) if (array[i] === item) return i;
+  if (nativeIndexOf &amp;&amp; array.indexOf === nativeIndexOf) return array.indexOf(item, isSorted);
+  for (; i &lt; l; i++) if (array[i] === item) return i;
   return -1;
 };
 ...</pre></li>
@@ -7212,15 +7205,15 @@ _.indexOf = function(array, item, isSorted) {
     <li>description and source-code<pre class="apidocCodePre">splice = function () {
   var obj = this._wrapped;
   method.apply(obj, arguments);
-  if ((name == &#x27;shift&#x27; || name == &#x27;splice&#x27;) &#x26;&#x26; obj.length === 0) delete obj[0];
+  if ((name == 'shift' || name == 'splice') &amp;&amp; obj.length === 0) delete obj[0];
   return result.call(this, obj);
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
     ],
     src = [
-        &#x22;./node_modules/eve/eve.js&#x22;,
-        &#x22;./src/amd-banner.js&#x22;,
-        &#x22;./src/amd-footer.js&#x22;
+        "./node_modules/eve/eve.js",
+        "./src/amd-banner.js",
+        "./src/amd-footer.js"
     ];
 
 src.<span class="apidocCodeKeywordSpan">splice</span>(2, 0, core);
@@ -7228,9 +7221,9 @@ src.<span class="apidocCodeKeywordSpan">splice</span>(2, 0, core);
 grunt.initConfig({
     // Metadata.
     pkg: pkg,
-    banner: grunt.file.read(&#x22;./src/copy.js&#x22;)
+    banner: grunt.file.read("./src/copy.js")
         .replace(/@VERSION/, pkg.version)
-        .replace(/@DATE/, grunt.template.today(&#x22;yyyy-mm-dd&#x22;)) + &#x22;\n&#x22;,
+        .replace(/@DATE/, grunt.template.today("yyyy-mm-dd")) + "\n",
 ...</pre></li>
     </ul>
 
@@ -7466,7 +7459,7 @@ _.intersection = function(array) {
     <li>description and source-code<pre class="apidocCodePre">unshift = function () {
   var obj = this._wrapped;
   method.apply(obj, arguments);
-  if ((name == &#x27;shift&#x27; || name == &#x27;splice&#x27;) &#x26;&#x26; obj.length === 0) delete obj[0];
+  if ((name == 'shift' || name == 'splice') &amp;&amp; obj.length === 0) delete obj[0];
   return result.call(this, obj);
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
@@ -7546,10 +7539,10 @@ _.findWhere = function(obj, attrs) {
 };
 
 // Return the maximum element or (element-based computation).
-// Can&#x27;t optimize arrays of integers longer than 65,535 elements.
+// Can't optimize arrays of integers longer than 65,535 elements.
 // See: https://bugs.webkit.org/show_bug.cgi?id=80797
 _.max = function(obj, iterator, context) {
-  if (!iterator &#x26;&#x26; _.isArray(obj) &#x26;&#x26; obj[0] === +obj[0] &#x26;&#x26; obj.length &#x3c; 65535) {
+  if (!iterator &amp;&amp; _.isArray(obj) &amp;&amp; obj[0] === +obj[0] &amp;&amp; obj.length &lt; 65535) {
 ...</pre></li>
     </ul>
 
@@ -7613,3 +7606,4 @@ _.max = function(obj, iterator, context) {
     ]
 </div>
 </div>
+</body></html>
